@@ -28,5 +28,10 @@ class UserTest < ActiveSupport::TestCase
   def test_password_presence
     user.password = nil
     assert user.invalid?
-  end  
+  end
+
+  def test_access_token_presence
+    user.save
+    refute_nil user.access_token
+  end
 end
