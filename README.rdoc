@@ -1,28 +1,23 @@
-== README
+== PROJECT DESCRIPTION
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Write an application that shows time in different timezones
 
-Things you may want to cover:
+* User must be able to create an account and log in
 
-* Ruby version
+* When logged in, user can see, edit and delete timezones he entered
 
-* System dependencies
+* When entered, each entry has a Name, Name of city in timezone, difference to GMT time
 
-* Configuration
+* When displayed, each entry has also current time
 
-* Database creation
+* Filter by names
 
-* Database initialization
+* REST API. Make it possible to perform all user actions via the API, including authentication
 
-* How to run the test suite
+* All actions need to be done client side using AJAX, refreshing the page is not acceptable
 
-* Services (job queues, cache servers, search engines, etc.)
+* In any case you should be able to explain how a REST API works and demonstrate that by creating functional tests that use the REST Layer directly
 
-* Deployment instructions
+* Bonus: unit tests!
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* You will not be marked on graphic design, however, do try to keep it as tidy as possible
