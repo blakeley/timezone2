@@ -1,0 +1,12 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  city_name: MyString
+  minutes_offset: 1
+
+two:
+  name: MyString
+  city_name: MyString
+  minutes_offset: 1
