@@ -2,8 +2,12 @@ require "test_helper"
 
 class ZoneTest < ActiveSupport::TestCase
 
+  def user
+    @user ||= User.new(email: 'user@mail.com', password: 'password')
+  end
+
   def zone
-    @zone ||= Zone.new(name: "Pacific Standard Time", city_name: "Portland, OR", minutes_offset: -7*60)
+    @zone ||= user.zones.build(name: "Pacific Standard Time", city_name: "Portland, OR", minutes_offset: -7*60)
   end
 
   def test_valid
@@ -29,5 +33,9 @@ class ZoneTest < ActiveSupport::TestCase
     zone.minutes_offset = "sixty"
     assert zone.invalid?
   end
-  
+
+  def test_belongs_to_user
+    assert_equal zone.user, user
+  end
+
 end
