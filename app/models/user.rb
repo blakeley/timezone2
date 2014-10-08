@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
     self.access_token = SecureRandom.hex
   end
 
+  def authentication_token
+    "#{self.id}:#{self.access_token}"
+  end
+
 end
