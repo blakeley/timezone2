@@ -35,6 +35,11 @@ class UserTest < ActiveSupport::TestCase
     refute_nil user.access_token
   end
 
+  def test_authentication_token
+    user.save
+    refute_nil user.authentication_token
+  end
+
   def test_has_many_zones
     assert_equal user.zones, []
     refute_nil user.zones.build
