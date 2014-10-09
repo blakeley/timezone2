@@ -64,8 +64,41 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     assert_equal response.status, 403
   end
 
+  # PATCH zones/:id
+  test "PATCH zone/:id with valid credentials has a 204 status code" do
+    zone.save
+    request.env['HTTP_AUTHORIZATION'] = user.authentication_token
+    patch :update, id: zone.id, zone: {name: "New name", city_name: "New City", minutes_offset: 0}
+    assert_equal response.status, 204
+  end
 
+  test "PATCH zone/:id with valid credentials updates the resource" do
+    other_zone = Zone.create(name: "name", city_name: "city_name", minutes_offset: 0, user: user)
+    request.env['HTTP_AUTHORIZATION'] = user.authentication_token
+    patch :update, id: other_zone.id, zone: {name: zone.name, city_name: zone.city_name, minutes_offset: zone.minutes_offset}
+    other_zone = Zone.find(other_zone.id)
+    assert_equal zone.name, other_zone.name
+    assert_equal zone.city_name, other_zone.city_name
+    assert_equal zone.minutes_offset, other_zone.minutes_offset
+  end
+
+  test "PATCH zone/:id with bad parameters has a 403 status code" do
+    zone.save
+    request.env['HTTP_AUTHORIZATION'] = user.authentication_token
+    patch :update, id: zone.id, zone: {minutes_offset: "string"}
+    assert_equal response.status, 403
+  end
+
+  test "PATCH zone/:id with bad parameters returns error messages" do
+    zone.save
+    request.env['HTTP_AUTHORIZATION'] = user.authentication_token
+    patch :update, id: zone.id, zone: {minutes_offset: "string"}
+    assert_equal "is not a number", json["errors"]["minutes_offset"][0]
+  end
 
 
 
 end
+
+
+

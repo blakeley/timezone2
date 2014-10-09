@@ -1,7 +1,7 @@
 class API::V1::ZonesController < ApplicationController
   respond_to :json
   before_action :authenticate_user!
-  before_action :authorize_user!, only: [:show]
+  before_action :authorize_user!, only: [:show, :update]
 
   def index
     respond_with current_user.zones
@@ -11,10 +11,22 @@ class API::V1::ZonesController < ApplicationController
     respond_with zone
   end
 
+  def update
+    if zone.update(zone_params)
+      respond_with zone
+    else
+      render status: 403, json: {errors: zone.errors}
+    end
+  end
+
   private
 
   def zone
-    Zone.find(params[:id])
+    @zone ||= Zone.find(params[:id])
+  end
+
+  def zone_params
+    params.require(:zone).permit(:name, :city_name, :minutes_offset)
   end
 
   def authorize_user!
