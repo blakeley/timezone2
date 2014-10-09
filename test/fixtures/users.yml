@@ -2,9 +2,9 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  email: MyString
-  password_digest: MyString
+  email: user@mail.com
+  password_digest: password
 
 two:
-  email: MyString
-  password_digest: MyString
+  email: other_user@mail.com
+  password_digest: password

@@ -2,11 +2,13 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  city_name: MyString
-  minutes_offset: 1
+  name: Greenwich Mean Time
+  city_name: London
+  minutes_offset: 0
+  user: one
 
 two:
-  name: MyString
-  city_name: MyString
-  minutes_offset: 1
+  name: Pacific Standard Time
+  city_name: Portland
+  minutes_offset: -420
+  user: two

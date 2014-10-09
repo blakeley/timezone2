@@ -3,7 +3,7 @@ require "test_helper"
 class API::V1::SessionsControllerTest < ActionController::TestCase
 
   def user
-    @user ||= User.create(email: 'user@mail.com', password: 'password')
+    @user ||= User.create(email: 'new@mail.com', password: 'password')
   end
 
   def json 
