@@ -33,5 +33,15 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     refute_nil json["message"]
   end
 
+  # GET index
+  test "GET zones with valid authentication returns all zones" do
+    zone.save
+    request.env['HTTP_AUTHORIZATION'] = user.authentication_token
+    get :index
+    assert_equal zone.id, json["zones"].first["id"]
+    assert_nil json["zones"].first["created_at"]
+  end
+
+
 
 end

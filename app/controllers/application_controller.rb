@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
+  before_action :set_default_format
 
 
   private
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
     unless current_user
       render status: :forbidden, json: {message: "Invalid authentication token."}
     end
+  end
+
+  def set_default_format
+    request.format = :json unless params[:format] 
   end
 
 end

@@ -13,5 +13,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'minitest-rails'
 gem 'email_validator'
+gem 'active_model_serializers' 
 
 

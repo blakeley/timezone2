@@ -3,7 +3,7 @@ class API::V1::ZonesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    render status: :ok, nothing: true
+    respond_with current_user.zones
   end
 
 end

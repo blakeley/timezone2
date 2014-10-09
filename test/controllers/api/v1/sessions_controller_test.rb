@@ -21,12 +21,12 @@ class API::V1::SessionsControllerTest < ActionController::TestCase
     assert_equal json["token"], user.authentication_token
   end
 
-  test "GET token with invalid credentials has a 401 status code" do
+  test "POST sessions with invalid credentials has a 401 status code" do
     post :create, user: {email: user.email, password: "bad" + user.password}
     assert_equal response.status, 401
   end
 
-  test "GET token with invalid credentials returns error messages" do
+  test "POST sessions with invalid credentials returns error messages" do
     post :create, user: {email: user.email, password: "bad" + user.password}
     refute_nil json["message"]
   end
