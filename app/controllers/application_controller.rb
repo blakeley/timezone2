@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :set_default_format
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
 
   private
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   def set_default_format
     request.format = :json unless params[:format] 
+  end
+
+  def render_404
+    render status: :not_found, nothing: true
   end
 
 end
