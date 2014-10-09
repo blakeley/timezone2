@@ -1,7 +1,7 @@
 class API::V1::ZonesController < ApplicationController
   respond_to :json
   before_action :authenticate_user!
-  before_action :authorize_user!, only: [:show, :update]
+  before_action :authorize_user!, only: [:show, :update, :destroy]
 
   def index
     respond_with current_user.zones
@@ -17,6 +17,10 @@ class API::V1::ZonesController < ApplicationController
     else
       render status: 403, json: {errors: zone.errors}
     end
+  end
+
+  def destroy
+    respond_with zone.destroy
   end
 
   private

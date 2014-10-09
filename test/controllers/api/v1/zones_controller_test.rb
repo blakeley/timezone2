@@ -84,6 +84,21 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     assert_equal "is not a number", json["errors"]["minutes_offset"][0]
   end
 
+  # DELETE zones/:id
+  test "DELETE zone/:id with valid credentials has a 204 status code" do
+    delete :destroy, id: zone.id
+    assert_equal 204, response.status
+  end
+
+  test "DELETE zone/:id with valid credentials has a 403 status code" do
+    delete :destroy, id: zones(:two).id
+    assert_equal 403, response.status
+  end
+
+  test "DELETE zone/:id with non-existent resource has a 404 status code" do
+    delete :destroy, id: -1
+    assert_equal 404, response.status
+  end  
 
 
 end
