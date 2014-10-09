@@ -23,6 +23,10 @@ class API::V1::ZonesController < ApplicationController
     respond_with zone.destroy
   end
 
+  def create
+    respond_with :api, :v1, current_user.zones.create(zone_params)
+  end
+
   private
 
   def zone

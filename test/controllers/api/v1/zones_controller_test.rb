@@ -90,7 +90,13 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     assert_equal 204, response.status
   end
 
-  test "DELETE zone/:id with valid credentials has a 403 status code" do
+  test "DELETE zone/:id with valid credentials destroys a zone" do
+    before_count = user.zones.count
+    delete :destroy, id: zone.id
+    assert_equal before_count - 1, user.zones.count
+  end
+
+  test "DELETE zone/:id with invalid credentials has a 403 status code" do
     delete :destroy, id: zones(:two).id
     assert_equal 403, response.status
   end
@@ -99,6 +105,29 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     delete :destroy, id: -1
     assert_equal 404, response.status
   end  
+
+  # POST zones
+  test "POST zones with valid parameters returns a 201 status code" do
+    post :create, zone: {name: zone.name, city_name: zone.city_name, minutes_offset: zone.minutes_offset}
+    assert_equal 201, response.status
+  end
+
+  test "POST zones with valid parameters creates a new zone for the user" do
+    before_count = user.zones.count
+    post :create, zone: {name: zone.name, city_name: zone.city_name, minutes_offset: zone.minutes_offset}
+    assert_equal before_count + 1, user.zones.count
+  end
+
+  test "POST zones with invalid parameters returns a 422 status code" do
+    post :create, zone: {name: zone.name, city_name: zone.city_name, minutes_offset: "zero"}
+    assert_equal 422, response.status
+  end
+
+  test "POST zones with invalid parameters does not create a new zone" do
+    before_count = user.zones.count
+    post :create, zone: {name: zone.name, city_name: zone.city_name, minutes_offset: "zero"}
+    assert_equal before_count, user.zones.count
+  end
 
 
 end
