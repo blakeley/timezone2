@@ -15,4 +15,5 @@ gem 'minitest-rails'
 gem 'email_validator'
 gem 'active_model_serializers' 
 
-
+gem 'ember-rails'
+gem 'ember-source'
