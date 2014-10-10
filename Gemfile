@@ -17,3 +17,10 @@ gem 'active_model_serializers'
 
 gem 'ember-rails'
 gem 'ember-source'
+gem 'capybara'
+gem 'poltergeist'
+
+group :test do
+  gem 'minitest-rails-capybara'
+end
+

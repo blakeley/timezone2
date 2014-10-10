@@ -5,15 +5,23 @@ require "minitest/rails"
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
-# require "minitest/rails/capybara"
+require "minitest/rails/capybara"
+require 'capybara/poltergeist'
 
 # Uncomment for awesome colorful output
 # require "minitest/pride"
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {phantomjs_logger: File::NULL})
+end
+
 
 class ActiveSupport::TestCase
-    ActiveRecord::Migration.check_pending!
+  ActiveRecord::Migration.check_pending!
 
-    # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  Capybara.javascript_driver = :poltergeist
+  Capybara.current_driver = Capybara.javascript_driver
+
+  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
@@ -21,3 +29,4 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
