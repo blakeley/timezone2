@@ -3,8 +3,8 @@
 
 one:
   email: user@mail.com
-  password_digest: password
+  password_digest: $2a$10$HWCM7WCOpfrGT8vqi07t7enoJxRFuNVkE81GmL/CjHliDJ9ohLcZO
 
 two:
   email: other_user@mail.com
-  password_digest: password
+  password_digest: $2a$10$HWCM7WCOpfrGT8vqi07t7enoJxRFuNVkE81GmL/CjHliDJ9ohLcZO

@@ -1,2 +1,16 @@
 <h1>Hello World</h1>
-{{outlet}}
+
+{{#if signedIn}}
+  signed in
+  {{outlet}}
+{{else}}
+  <form class="form-horizontal" {{action "signIn" on="submit"}}>
+    <div class="form-group">
+      {{input value=email type="text" class="form-control input-lg" id="email" placeholder="Enter email"}}
+    </div>
+    <div class="form-group">
+      {{input value=password type="password" class="form-control input-lg" id="password" placeholder="Password"}}
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+  </form>
+{{/if}}
