@@ -1,4 +1,4 @@
-class API::V1::ZonesController < ApplicationController
+class API::V1::ZonesController < API::V1::ApiController
   respond_to :json
   before_action :authenticate_user!
   before_action :authorize_user!, only: [:show, :update, :destroy]
