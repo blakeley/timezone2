@@ -14,10 +14,11 @@ class AuthenticationTest < Capybara::Rails::TestCase
 
   test "sign in" do
     visit root_path
+    assert_content 'Sign in'
     page.fill_in 'email', with: "user@mail.com"
     page.fill_in 'password', with: "password"
     click_button 'Sign in'
-    assert_content 'signed in'
+    refute_content 'Sign in'
   end
 
 end
