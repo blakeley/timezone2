@@ -16,6 +16,11 @@ class API::V1::UsersControllerTest < ActionController::TestCase
     assert_equal response.status, 201
   end
 
+  test "POST user with valid registration has returns the authentication token" do
+    post :create, user: {email: 'new@mail.com', password: 'password'}
+    refute_nil json["token"]
+  end
+
   test "POST user with invalid registration has a 400 status code" do
     post :create, user: {email: 'invalid', password: 'password'}
     assert_equal response.status, 400
