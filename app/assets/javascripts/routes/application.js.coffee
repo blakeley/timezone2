@@ -1,9 +1,7 @@
 App.ApplicationRoute = Ember.Route.extend
 
   enter: () ->
-    unless App.ApplicationStore.authToken
+    if App.ApplicationStore.authToken
+      @transitionTo('zones')
+    else
       @transitionTo('sessions.new')
-
-  setupController: (controller) ->
-    @controller.set("signedIn", true)
-    console.log "Signed In?: " + @controller.get("signedIn") 

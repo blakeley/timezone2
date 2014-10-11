@@ -9,11 +9,11 @@ App.SessionsNewRoute = Ember.Route.extend
     signIn: () ->
       Ember.$.post('/api/v1/sessions', {user: {email: @controller.get('email'), password: @controller.get('password')}}).then(
         (response) =>
-          console.log 'success'
+          console.log 'token: ' + response['token']
           Ember.$.ajaxSetup
-            headers: { 'email': @controller.get('email'), 'token': response['token'] }
+            headers: { 'AUTHORIZATION': response['token'] }
           App.ApplicationStore.authToken = response['token']
-          @transitionTo '/'
+          @transitionTo 'zones'
       , (error) ->
           console.log 'fail'
         )

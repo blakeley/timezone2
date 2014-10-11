@@ -1,0 +1,24 @@
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Difference</th>
+      <th>Current Time</th>
+    </tr>
+  </thead>
+
+  {{#each zone in controller}}
+  <tbody>
+    <tr>
+      <td>{{zone.name}}</td>
+      <td>{{zone.cityName}}</td>
+      <td>{{zone.minutesOffset}} minutes</td>
+      <td>{{zone.currentTime}}</td>
+    </tr>
+  </tbody>
+  {{/each}}
+</table> 
