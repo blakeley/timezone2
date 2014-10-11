@@ -24,3 +24,4 @@ group :test do
   gem 'minitest-rails-capybara'
 end
 
+gem 'bootstrap-sass', '~> 3.2.0'

@@ -1,9 +1,11 @@
 
 
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th></th>
+      <th></th>
       <th>Name</th>
       <th>City</th>
       <th>Difference</th>
@@ -14,6 +16,8 @@
   {{#each zone in controller}}
   <tbody>
     <tr>
+      <td><span class="glyphicon glyphicon-remove"></span></td>
+      <td><span class="glyphicon glyphicon-edit"></span></td>
       <td>{{zone.name}}</td>
       <td>{{zone.cityName}}</td>
       <td>{{zone.minutesOffset}} minutes</td>
