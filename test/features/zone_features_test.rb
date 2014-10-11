@@ -4,9 +4,11 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
 
   def setup
     Capybara.current_driver = Capybara.javascript_driver
+    @user = User.first
+    @zone = @user.zones.first
     visit root_path
     assert_content 'Sign in'
-    page.fill_in 'email', with: "user@mail.com"
+    page.fill_in 'email', with: @user.email
     page.fill_in 'password', with: "password"
     click_button 'Sign in'
   end
@@ -20,9 +22,9 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
   end
 
   test "delete" do
-    assert_content "Greenwich"
+    assert_content @zone.name
     page.find('.glyphicon-remove').click
-    refute_content "Greenwich"
+    refute_content @zone.city_name
   end
 
 end

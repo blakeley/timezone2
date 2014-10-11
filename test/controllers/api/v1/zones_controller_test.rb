@@ -1,19 +1,14 @@
 require "test_helper"
 
 class API::V1::ZonesControllerTest < ActionController::TestCase
+  attr_reader :user, :other_user, :zone, :other_zone
 
   def setup
-    user.save
-    zone.save
+    @user = User.create(email: 'new@mail.com', password: 'password')
+    @other_user = User.create(email: 'other@mail.com', password: 'password')
+    @zone = @user.zones.create(name: "Pacific Standard Time", city_name: "Portland, OR", minutes_offset: -7*60)
+    @other_zone = @other_user.zones.create(name: "GMT", city_name: "London, UK", minutes_offset: 0)
     request.env['HTTP_AUTHORIZATION'] = user.authentication_token
-  end
-
-  def user
-    @user ||= User.new(email: 'new@mail.com', password: 'password')
-  end
-
-  def zone
-    @zone ||= user.zones.build(name: "Pacific Standard Time", city_name: "Portland, OR", minutes_offset: -7*60)
   end
 
   def json 
@@ -57,23 +52,23 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
   end
 
   test "GET zone/:id with unauthorized resource has a 403 status code" do
-    zone.update(user: users(:two))
+    zone.update(user: other_user)
     get :show, id: zone.id
     assert_equal 403, response.status
   end
 
   # PATCH zones/:id
   test "PATCH zone/:id with valid credentials has a 204 status code" do
-    patch :update, id: zone.id, zone: {name: zones(:two).name, city_name: zones(:two).city_name, minutes_offset: zones(:two).minutes_offset}
+    patch :update, id: zone.id, zone: {name: other_zone.name, city_name: other_zone.city_name, minutes_offset: other_zone.minutes_offset}
     assert_equal 204, response.status
   end
 
   test "PATCH zone/:id with valid credentials updates the resource" do
-    patch :update, id: zone.id, zone: {name: zones(:two).name, city_name: zones(:two).city_name, minutes_offset: zones(:two).minutes_offset}
+    patch :update, id: zone.id, zone: {name: other_zone.name, city_name: other_zone.city_name, minutes_offset: other_zone.minutes_offset}
     updated_zone = Zone.find(zone.id)
-    assert_equal zones(:two).name, updated_zone.name
-    assert_equal zones(:two).city_name, updated_zone.city_name
-    assert_equal zones(:two).minutes_offset, updated_zone.minutes_offset
+    assert_equal other_zone.name, updated_zone.name
+    assert_equal other_zone.city_name, updated_zone.city_name
+    assert_equal other_zone.minutes_offset, updated_zone.minutes_offset
   end
 
   test "PATCH zone/:id with bad parameters has a 403 status code" do
@@ -99,7 +94,7 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
   end
 
   test "DELETE zone/:id with invalid credentials has a 403 status code" do
-    delete :destroy, id: zones(:two).id
+    delete :destroy, id: other_zone.id
     assert_equal 403, response.status
   end
 
