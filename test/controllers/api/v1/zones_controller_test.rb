@@ -3,15 +3,17 @@ require "test_helper"
 class API::V1::ZonesControllerTest < ActionController::TestCase
 
   def setup
+    user.save
+    zone.save
     request.env['HTTP_AUTHORIZATION'] = user.authentication_token
   end
 
   def user
-    @user ||= users(:one)
+    @user ||= User.new(email: 'new@mail.com', password: 'password')
   end
 
   def zone
-    @zone ||= zones(:one)
+    @zone ||= user.zones.build(name: "Pacific Standard Time", city_name: "Portland, OR", minutes_offset: -7*60)
   end
 
   def json 

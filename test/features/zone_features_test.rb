@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ZoneTest < Capybara::Rails::TestCase
+class ZoneFeaturesTest < Capybara::Rails::TestCase
 
   def setup
     Capybara.current_driver = Capybara.javascript_driver
@@ -17,6 +17,12 @@ class ZoneTest < Capybara::Rails::TestCase
     assert_content 'City'
     assert_content 'Difference'
     assert_content 'Current Time'
+  end
+
+  test "delete" do
+    assert_content "Greenwich"
+    page.find('.glyphicon-remove').click
+    refute_content "Greenwich"
   end
 
 end

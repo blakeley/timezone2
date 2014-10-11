@@ -13,15 +13,15 @@
     </tr>
   </thead>
 
-  {{#each zone in controller}}
+  {{#each itemController="zone"}}
   <tbody>
     <tr>
-      <td><span class="glyphicon glyphicon-remove"></span></td>
+      <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
       <td><span class="glyphicon glyphicon-edit"></span></td>
-      <td>{{zone.name}}</td>
-      <td>{{zone.cityName}}</td>
-      <td>{{zone.minutesOffset}} minutes</td>
-      <td>{{zone.currentTime}}</td>
+      <td>{{name}}</td>
+      <td>{{cityName}}</td>
+      <td>{{minutesOffset}} minutes</td>
+      <td>{{currentTime}}</td>
     </tr>
   </tbody>
   {{/each}}
