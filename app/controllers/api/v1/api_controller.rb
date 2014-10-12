@@ -12,7 +12,7 @@ class API::V1::ApiController < ActionController::Base
   end
 
   def authenticate_user!
-    unless current_user
+    if request.headers[:HTTP_AUTHORIZATION].nil? || current_user.nil?
       render status: :forbidden, json: {message: "Invalid authentication token."}
     end
   end
