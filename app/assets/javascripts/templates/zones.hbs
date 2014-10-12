@@ -20,8 +20,15 @@
   {{#each itemController="zone"}}
   <tbody>
     <tr>
-      <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
-      <td>{{#link-to 'zones.edit' id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
+      <td>
+        {{#unless isNew}}
+          <span class="glyphicon glyphicon-remove" {{action 'remove'}}></span>
+        {{/unless}}
+      </td>
+      <td>
+        {{#unless isNew}}
+          {{#link-to 'zones.edit' id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
+        {{/unless}}
       <td>{{name}}</td>
       <td>{{cityName}}</td>
       <td>{{minutesOffset}} minutes</td>
