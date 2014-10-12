@@ -1,3 +1,3 @@
-App.ZonesRoute = Ember.Route.extend
+App.ZonesRoute = App.AuthenticatedRoute.extend
 
   model: -> @store.find 'zone'
