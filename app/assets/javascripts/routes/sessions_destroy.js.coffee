@@ -1,6 +1,6 @@
 App.SessionsDestroyRoute = Ember.Route.extend
 
-  activate: () ->
-    console.log "sessions destroy route"
+  beforeModel: () ->
     App.set("token", null)
+    @store.unloadAll("zone")
     @transitionTo '/'

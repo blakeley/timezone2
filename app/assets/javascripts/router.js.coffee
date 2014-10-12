@@ -8,6 +8,6 @@ App.Router.map () ->
   @resource 'zones', ->
     @route 'edit', path: '/:id'
     @route 'new'
-
-  # @resource('posts')
+  @resource 'users', ->
+    @route 'new'
 
