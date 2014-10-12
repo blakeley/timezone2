@@ -4,8 +4,7 @@ App.UsersNewController = Ember.Controller.extend
       credentials = {user: {email: @get('email'), password: @get('password')}}
       Ember.$.post('/api/v1/users', credentials).then(
         (response) =>
-          console.log response['token']
-          App.set('token', response['token'])
+          App.session.set('token', response['token'])
           @transitionToRoute 'zones'
       , (error) ->
           console.log 'fail'

@@ -8,5 +8,5 @@ App.ApplicationStore = DS.Store.extend({
 # Override the default adapter with the `DS.ActiveModelAdapter` which
 # is built to work nicely with the ActiveModel::Serializers gem.
 App.ApplicationAdapter = DS.ActiveModelAdapter.extend
-  headers: Ember.computed 'App.token', () ->
-    { 'AUTHORIZATION': App.get("token") }
+  headers: Ember.computed 'App.session.token', () ->
+    return { 'AUTHORIZATION': App.session.get("token") }
