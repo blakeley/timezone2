@@ -5,6 +5,8 @@
   new
 {{/link-to}}
 
+{{view Ember.TextField value=search placeholder="search" classNames="form-control"}}
+
 <table class="table">
   <thead>
     <tr>
@@ -17,22 +19,22 @@
     </tr>
   </thead>
 
-  {{#each itemController="zone"}}
+  {{#each zone in zones itemController="zone"}}
   <tbody>
     <tr>
       <td>
-        {{#unless isNew}}
+        {{#unless zone.isNew}}
           <span class="glyphicon glyphicon-remove" {{action 'remove'}}></span>
         {{/unless}}
       </td>
       <td>
-        {{#unless isNew}}
-          {{#link-to 'zones.edit' id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
+        {{#unless zone.isNew}}
+          {{#link-to 'zones.edit' zone.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
         {{/unless}}
-      <td>{{name}}</td>
-      <td>{{cityName}}</td>
-      <td>{{minutesOffset}} minutes</td>
-      <td>{{currentTime}}</td>
+      <td>{{zone.name}}</td>
+      <td>{{zone.cityName}}</td>
+      <td>{{zone.minutesOffset}} minutes</td>
+      <td>{{zone.currentTime}}</td>
     </tr>
   </tbody>
   {{/each}}
