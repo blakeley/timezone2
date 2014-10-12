@@ -3,7 +3,8 @@
 App.Router.map () ->
   @resource 'sessions', path: '', ->
     @route 'new', path: 'sign-in'
-  @resource 'zones'
+  @resource 'zones', ->
+    @route 'new'
 
   # @resource('posts')
 

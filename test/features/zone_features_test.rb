@@ -13,6 +13,14 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
     click_button 'Sign in'
   end
 
+  test "new" do
+    click_link 'new'
+    assert_content 'New zone'
+    page.fill_in 'name', with: 'name'
+    page.fill_in 'cityName', with: 'cityName'
+    page.fill_in 'minutesOffset', with: 10
+    click_button 'Create Zone'
+  end
 
   test "index" do
     assert_content 'Name'
@@ -22,9 +30,6 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
   end
 
   test "delete" do
-    assert_content @zone.name
-    page.find('.glyphicon-remove').click
-    refute_content @zone.city_name
   end
 
 end

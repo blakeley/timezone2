@@ -4,5 +4,6 @@ App.Zone = DS.Model.extend
   minutesOffset: DS.attr('number')
 
   currentTime: ( ->
-      return moment.utc().add(-420, 'minutes').format('h:mm a')
+      return moment.utc().add(@get('minutesOffset'), 'minutes').format('h:mm a')
     ).property('minutesOffset')
+

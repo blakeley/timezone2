@@ -5,10 +5,10 @@ one:
   name: Greenwich Mean Time
   city_name: London
   minutes_offset: 0
-  user_id: 1
+  user: one
 
 two:
   name: Pacific Standard Time
   city_name: Portland
   minutes_offset: -420
-  user_id: 2
+  user: two
