@@ -8,7 +8,10 @@ App.AuthenticatedRoute = Ember.Route.extend
 Session = Ember.Object.extend
   token: localStorage.token,
   tokenChanged: Ember.observer 'token', () ->
-    localStorage.token = @get('token')
+    if @get('token')
+      localStorage.token = @get('token')
+    else
+      localStorage.removeItem('token')
 
 
 App.session = Session.create()

@@ -7,10 +7,15 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
     @user = User.first
     @zone = @user.zones.first
     visit root_path
-    assert_content 'Sign in'
     page.fill_in 'email', with: @user.email
     page.fill_in 'password', with: "password"
     click_button 'Sign in'
+  end
+
+  # Capybara does clear localStorage between sessions,
+  # and (incorrectly) does not consider this a bug
+  def teardown
+    page.execute_script("window.localStorage.clear()")
   end
 
   test "new" do
@@ -27,9 +32,6 @@ class ZoneFeaturesTest < Capybara::Rails::TestCase
     assert_content 'City'
     assert_content 'Difference'
     assert_content 'Current Time'
-  end
-
-  test "delete" do
   end
 
 end

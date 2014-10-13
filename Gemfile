@@ -22,6 +22,8 @@ gem 'poltergeist'
 
 group :test do
   gem 'minitest-rails-capybara'
+  gem 'launchy'
 end
 
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'rails_12factor', group: :production
