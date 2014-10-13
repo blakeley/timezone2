@@ -1,3 +1,8 @@
+{{#if errorMessage}}
+  <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+{{/if}}
+
+
 <form class="form-horizontal" {{action "signIn" on="submit"}}>
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email</label>
