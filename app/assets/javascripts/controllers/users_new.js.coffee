@@ -1,13 +1,20 @@
 App.UsersNewController = Ember.Controller.extend
+  email: '',
+  password: '',
   actions:
     register: () ->
-      credentials = {user: {email: @get('email'), password: @get('password')}}
-      Ember.$.post('/api/v1/users', credentials).then(
+      @set("errorMessage", null)
+      account = {user: {email: @get('email'), password: @get('password')}}
+      console.log account
+      Ember.$.post('/api/v1/users', account).then(
         (response) =>
           App.session.set('token', response['token'])
+          @set('email', '')
+          @set('password', '')
           @transitionToRoute 'zones'
-      , (error) ->
-          console.log 'fail'
+      , (error) =>
+          window.ee = error
+          @set('errorMessage', error.responseJSON.errors[0])
         )
 
 
