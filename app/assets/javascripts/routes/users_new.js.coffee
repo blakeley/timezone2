@@ -1,4 +1,4 @@
-App.SessionsNewRoute = Ember.Route.extend
+App.UsersNewRoute = Ember.Route.extend
 
   setupController: (controller) ->
     @controller.set('email', null)
