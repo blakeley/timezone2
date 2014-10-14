@@ -7,11 +7,5 @@ App.ZonesController = Ember.ArrayController.extend
     @filter (zone) => zone.get('isOpen') or zone.get('name').toLowerCase().indexOf(search) != -1
 
   actions:
-    newZone: () ->
+    new: () ->
       @store.createRecord 'zone'
-
-    createZone: ->
-      console.log 'creating'
-      @get('model').save().then =>
-        @transitionToRoute 'zones'
-

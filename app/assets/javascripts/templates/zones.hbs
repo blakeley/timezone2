@@ -21,7 +21,7 @@
     <tr>
       <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
       <td><span class="glyphicon glyphicon-ok" {{action 'save'}}></span></td>
-      <td>{{input action="save" value=zone.name}}</td>
+      <td>{{focus-input action="save" value=zone.name}}</td>
       <td>{{input action="save" value=zone.cityName}}</td>
       <td>{{input action="save" value=zone.minutesOffset class="short"}}</td>
       <td>{{zone.currentTime}}</td>
@@ -42,7 +42,7 @@
   <tfoot>
     <tr>
       <td colspan="100">
-        <button {{action 'newZone'}} type="button" class="btn btn-default">New Zone</button>
+        <button {{action 'new'}} type="button" class="btn btn-default">New Zone</button>
       </td>
     </tr>
   </tfoot>
