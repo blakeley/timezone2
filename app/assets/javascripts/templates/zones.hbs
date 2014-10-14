@@ -17,19 +17,19 @@
 
   <tbody>
   {{#each zone in zones itemController="zone"}}
-    {{#if zone.isNew}}
+    {{#if zone.isOpen}}
     <tr>
       <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
-      <td><span class="glyphicon glyphicon-check" {{action 'create'}}></span></td>
-      <td>{{input action="create" value=zone.name}}</td>
-      <td>{{input action="create" value=zone.cityName}}</td>
-      <td>{{input action="create" value=zone.minutesOffset class="short"}}</td>
+      <td><span class="glyphicon glyphicon-ok" {{action 'save'}}></span></td>
+      <td>{{input action="save" value=zone.name}}</td>
+      <td>{{input action="save" value=zone.cityName}}</td>
+      <td>{{input action="save" value=zone.minutesOffset class="short"}}</td>
       <td>{{zone.currentTime}}</td>
     </tr>
     {{else}}
     <tr>
       <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
-      <td>{{#link-to 'zones.edit' zone.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
+      <td><span class="glyphicon glyphicon-edit" {{action 'edit'}}></span></td>
       <td>{{zone.name}}</td>
       <td>{{zone.cityName}}</td>
       <td>{{zone.minutesOffset}} minutes</td>
