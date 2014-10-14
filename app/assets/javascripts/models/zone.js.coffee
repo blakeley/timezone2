@@ -7,3 +7,5 @@ App.Zone = DS.Model.extend
       return moment.utc().add(@get('minutesOffset'), 'minutes').format('h:mm a')
     ).property('minutesOffset')
 
+  isOpen: Ember.computed 'isEditing', 'isNew', ->
+    @get('isEditing') or @get('isNew')

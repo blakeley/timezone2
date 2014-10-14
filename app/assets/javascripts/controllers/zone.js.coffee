@@ -1,10 +1,5 @@
 App.ZoneController = Ember.ObjectController.extend
 
-  isEditing: false
-
-  isOpen: Ember.computed 'isEditing', 'isNew', ->
-    @get('isEditing') or @get('isNew')
-
   actions: 
     remove: ->
       @get('model').destroyRecord()
