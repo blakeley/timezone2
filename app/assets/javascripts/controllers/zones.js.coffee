@@ -1,11 +1,17 @@
 App.ZonesController = Ember.ArrayController.extend
-  sortProperties: ['minutesOffset']
-
-  zones: ( ->
+  zones: Ember.computed 'search', 'searchedZones', ->
     if @get('search') then @get('searchedZones') else @
-  ).property('search', 'searchedZones')
 
-  searchedZones: ( ->
+  searchedZones: Ember.computed 'search', '@each.name', ->
     search = @get('search').toLowerCase()
     @filter (zone) => zone.get('name').toLowerCase().indexOf(search) != -1
-  ).property('search', '@each.name')
+
+  actions:
+    newZone: () ->
+      @store.createRecord 'zone'
+
+    createZone: ->
+      console.log 'creating'
+      @get('model').save().then =>
+        @transitionToRoute 'zones'
+

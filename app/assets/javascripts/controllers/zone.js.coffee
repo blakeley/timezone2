@@ -4,3 +4,6 @@ App.ZoneController = Ember.ObjectController.extend
     remove: ->
       @get('model').destroyRecord()
 
+    create: ->
+      @get('model').save()
+

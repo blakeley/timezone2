@@ -1,11 +1,7 @@
 
 
 
-{{#link-to 'zones.new'}}
-  new
-{{/link-to}}
-
-{{view Ember.TextField value=search placeholder="search" classNames="form-control"}}
+{{input value=search placeholder="search" classNames="form-control"}}
 
 <table class="table">
   <thead>
@@ -19,25 +15,39 @@
     </tr>
   </thead>
 
-  {{#each zone in zones itemController="zone"}}
   <tbody>
+  {{#each zone in zones itemController="zone"}}
+    {{#if zone.isNew}}
     <tr>
-      <td>
-        {{#unless zone.isNew}}
-          <span class="glyphicon glyphicon-remove" {{action 'remove'}}></span>
-        {{/unless}}
-      </td>
-      <td>
-        {{#unless zone.isNew}}
-          {{#link-to 'zones.edit' zone.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
-        {{/unless}}
+      <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
+      <td><span class="glyphicon glyphicon-check" {{action 'create'}}></span></td>
+      <td>{{input action="create" value=zone.name}}</td>
+      <td>{{input action="create" value=zone.cityName}}</td>
+      <td>{{input action="create" value=zone.minutesOffset class="short"}}</td>
+      <td>{{zone.currentTime}}</td>
+    </tr>
+    {{else}}
+    <tr>
+      <td><span class="glyphicon glyphicon-remove" {{action 'remove'}}></span></td>
+      <td>{{#link-to 'zones.edit' zone.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}</td>
       <td>{{zone.name}}</td>
       <td>{{zone.cityName}}</td>
       <td>{{zone.minutesOffset}} minutes</td>
       <td>{{zone.currentTime}}</td>
     </tr>
-  </tbody>
+    {{/if}}
   {{/each}}
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="100">
+        <button {{action 'newZone'}} type="button" class="btn btn-default">New Zone</button>
+      </td>
+    </tr>
+  </tfoot>
+
+
 </table> 
 
 

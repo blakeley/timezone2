@@ -7,7 +7,6 @@ App.Router.map () ->
     @route 'destroy'#, path: 'logout'
   @resource 'zones', ->
     @route 'edit', path: '/:id'
-    @route 'new'
   @resource 'users', ->
     @route 'new'
 

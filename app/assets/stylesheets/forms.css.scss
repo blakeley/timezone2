@@ -1,0 +1,21 @@
+td input {
+  border-style: dotted;
+  border-width: 0 0 1px 0;
+  display: inline-block;
+}
+
+input:focus{
+  outline: none;
+}
+
+#minutesOffsete {
+  width: 8rem;
+}
+
+tfoot {
+  text-align: center;
+}
+
+.glyphicon {
+  cursor: pointer;
+}
