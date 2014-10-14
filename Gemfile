@@ -23,6 +23,7 @@ gem 'poltergeist'
 group :test do
   gem 'minitest-rails-capybara'
   gem 'launchy'
+  gem 'simplecov', :require => false
 end
 
 gem 'bootstrap-sass', '~> 3.2.0'

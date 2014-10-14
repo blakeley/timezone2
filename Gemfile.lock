@@ -53,6 +53,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    docile (1.1.5)
     email_validator (1.4.0)
       activemodel
     ember-data-source (1.0.0.beta.10)
@@ -144,6 +145,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -189,5 +195,6 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  simplecov
   spring
   uglifier (>= 1.3.0)
