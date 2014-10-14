@@ -3,6 +3,12 @@ App.AuthenticatedRoute = Ember.Route.extend
     unless App.session.get('token')
       @transitionTo('sessions.new')
 
+  events:
+    error: (reason, transition) ->
+      if reason.status == 401
+        @transitionTo('sessions.new')
+      else
+        alert('Something went wrong')
 
 
 Session = Ember.Object.extend

@@ -21,10 +21,10 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     assert_equal 200, response.status
   end
 
-  test "GET zones with invalid authentication has a 403 status code" do
+  test "GET zones with invalid authentication has a 401 status code" do
     request.env['HTTP_AUTHORIZATION'] = "bad" + user.authentication_token
     get :index
-    assert_equal 403, response.status
+    assert_equal 401, response.status
   end
 
   test "GET zones with invalid authentication returns error messages" do
