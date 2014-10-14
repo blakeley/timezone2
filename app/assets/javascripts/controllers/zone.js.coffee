@@ -5,8 +5,13 @@ App.ZoneController = Ember.ObjectController.extend
       @get('model').destroyRecord()
 
     save: ->
-      @get('model').save().then =>
-        @set('isEditing', false)
+      window.mm = @get('model')
+      @get('model').save().then(
+        (response) =>
+          @set('isEditing', false)
+      , (response) =>
+          @set('arror', response.errors)
+      )
 
     edit: ->
       @set('isEditing', true)
