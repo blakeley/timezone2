@@ -13,7 +13,7 @@ class API::V1::ZonesController < API::V1::ApiController
 
   def update
     zone.update(zone_params)
-    respond_with false
+    respond_with zone
   end
 
   def destroy
