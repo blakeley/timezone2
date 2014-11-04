@@ -12,11 +12,8 @@ class API::V1::ZonesController < API::V1::ApiController
   end
 
   def update
-    if zone.update(zone_params)
-      respond_with zone
-    else
-      render status: 403, json: {errors: zone.errors}
-    end
+    zone.update(zone_params)
+    respond_with false
   end
 
   def destroy

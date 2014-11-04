@@ -52,8 +52,7 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
   end
 
   test "GET zone/:id with unauthorized resource has a 403 status code" do
-    zone.update(user: other_user)
-    get :show, id: zone.id
+    get :show, id: other_zone.id
     assert_equal 403, response.status
   end
 
@@ -71,9 +70,9 @@ class API::V1::ZonesControllerTest < ActionController::TestCase
     assert_equal other_zone.minutes_offset, updated_zone.minutes_offset
   end
 
-  test "PATCH zone/:id with bad parameters has a 403 status code" do
+  test "PATCH zone/:id with bad parameters has a 422 status code" do
     patch :update, id: zone.id, zone: {minutes_offset: "string"}
-    assert_equal 403, response.status
+    assert_equal 422  , response.status
   end
 
   test "PATCH zone/:id with bad parameters returns error messages" do

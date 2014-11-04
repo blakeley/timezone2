@@ -14,7 +14,7 @@ require 'capybara/poltergeist'
 # Uncomment for awesome colorful output
 # require "minitest/pride"
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {phantomjs_logger: File::NULL})
+  Capybara::Poltergeist::Driver.new(app, {phantomjs_logger: File::NULL, js_errors: false})
 end
 
 
